@@ -11,11 +11,14 @@ const Count = ({ number }: CountType) => {
   const [focus, setFocus] = useState<boolean>(false);
 
   useEffect(() => {
-    const hasCountedBefore = localStorage.getItem("hasCountedBefore");
+    // Only access localStorage on client side
+    if (typeof window !== "undefined") {
+      const hasCountedBefore = localStorage.getItem("hasCountedBefore");
 
-    if (!hasCountedBefore) {
-      setFocus(true);
-      localStorage.setItem("hasCountedBefore", "true");
+      if (!hasCountedBefore) {
+        setFocus(true);
+        localStorage.setItem("hasCountedBefore", "true");
+      }
     }
   }, []);
 

@@ -6,6 +6,7 @@ import UserAvatarSetting from "./UserAvatarSetting";
 import AddressAndLocation from "./AddressAndLocation";
 import Link from "next/link";
 import SocialMediaLink from "./SocialMediaLink";
+import { apiRequest, getAuthHeader } from "@/utils/config";
 
 import avatar_1 from "@/assets/images/dashboard/avatar_02.jpg";
 
@@ -16,15 +17,23 @@ const ProfileBody = () => {
    const [lastName, setLastName] = useState("");
    const [phoneNumber, setPhoneNumber] = useState("");
    const [about, setAbout] = useState("");
-   const token = localStorage.getItem("token"); 
+   const [token, setToken] = useState<string | null>(null);
 
    useEffect(() => {
+      // Only access localStorage on client side
+      if (typeof window !== "undefined") {
+         const storedToken = localStorage.getItem("token");
+         setToken(storedToken);
+      }
+   }, []);
+
+   useEffect(() => {
+      if (!token) return; // Don't fetch if no token
+      
       const fetchUserData = async () => {
          try {
-            const res = await fetch("http://localhost:5000/api/profile", {
-               headers: {
-                  Authorization: `Bearer ${token}`,
-               },
+            const res = await apiRequest('/profile', {
+               headers: getAuthHeader()
             });
 
             if (!res.ok) {
@@ -44,16 +53,13 @@ const ProfileBody = () => {
       };
 
       fetchUserData();
-   }, []);
+   }, [token]);
 
    const handleSave = async () => {
       try {
-         const res = await fetch("http://localhost:5000/api/profile", {
+         const res = await apiRequest('/profile', {
             method: "PUT",
-            headers: {
-               "Content-Type": "application/json",
-               Authorization: `Bearer ${token}`,
-            },
+            headers: getAuthHeader(),
             body: JSON.stringify({
                firstName,
                lastName,
