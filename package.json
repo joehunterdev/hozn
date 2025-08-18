@@ -2,13 +2,13 @@
   "name": "HOZN-real-estate",
   "version": "0.1.0",
   "private": true,
-  "author": "Your Name <your.email@example.com>",
+  "author": "Your Name <joe.hunter.dev.emal@gmail.com>",
   "description": "Modern Real Estate Platform built with Next.js and Node.js",
   "repository": {
     "type": "git",
-    "url": "https://dev.azure.com/your-organization/your-project/_git/hozn-real-estate"
+    "url": "https://github.com/joehunterdev/hozn"
   },
-  "homepage": "https://your-app.vercel.app",
+  "homepage": "https://vercel.com/joeys-projects-c5fcc0b1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
