@@ -1,0 +1,46 @@
+{
+  "name": "real-estate-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Your Name <your.email@example.com>",
+  "description": "Backend API for Hozn Real Estate Platform - Node.js/Express with PostgreSQL",
+  "repository": {
+    "type": "git",
+    "url": "https://dev.azure.com/your-organization/your-project/_git/hozn-real-estate-backend"
+  },
+  "scripts": {
+    "dev": "ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "vercel-build": "echo 'No build step required'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["real-estate", "nodejs", "express", "typescript", "sequelize"],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "description": "Backend API for Hozn Real Estate Platform - Node.js/Express with PostgreSQL",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.14.1",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^6.37.6",
+    "sequelize-cli": "^6.6.2",
+    "sequelize-typescript": "^2.1.6"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.13.13",
+    "@types/sequelize": "^4.28.20",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
