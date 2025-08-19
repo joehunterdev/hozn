@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation"; 
-
+import { API_CONFIG } from "@/utils/config";
 
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 
@@ -54,7 +54,7 @@ const RegisterForm = () => {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/signup", data);
+      const response = await axios.post(`${API_CONFIG.baseUrl}/auth/signup`, data);
 
       if (response.status === 201) {
         toast.success("Registration successful! Redirecting to login...", {

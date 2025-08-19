@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from "next/image";
+import { API_CONFIG } from "@/utils/config";
 
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 
@@ -28,7 +29,7 @@ const LoginForm = () => {
 
    const onSubmit = async (data: FormData) => {
       try {
-         const response = await fetch("http://localhost:5000/api/auth/login", { 
+         const response = await fetch(`${API_CONFIG.baseUrl}/auth/login`, { 
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -37,6 +38,10 @@ const LoginForm = () => {
          const result = await response.json();
 
          if (response.ok) {
+            // Store the token if provided
+            if (result.token) {
+               localStorage.setItem("token", result.token);
+            }
             toast.success("Login successfully", { position: "top-center" });
             reset();
             router.push("/dashboard/dashboard-index"); 
