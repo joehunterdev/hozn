@@ -32,8 +32,10 @@ const ProfileBody = () => {
       
       const fetchUserData = async () => {
          try {
+            // Get auth headers client-side only
+            const authHeaders = getAuthHeader();
             const res = await apiRequest('/profile', {
-               headers: getAuthHeader()
+               headers: authHeaders
             });
 
             if (!res.ok) {
@@ -57,9 +59,11 @@ const ProfileBody = () => {
 
    const handleSave = async () => {
       try {
+         // Get auth headers client-side only
+         const authHeaders = getAuthHeader();
          const res = await apiRequest('/profile', {
             method: "PUT",
-            headers: getAuthHeader(),
+            headers: authHeaders,
             body: JSON.stringify({
                firstName,
                lastName,
