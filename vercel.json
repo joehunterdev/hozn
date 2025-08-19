@@ -1,15 +1,4 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "functions": {
-    "real-estate-backend/src/server.ts": {
-      "runtime": "@vercel/node"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/real-estate-backend/src/server.ts"
-    }
-  ]
+  "outputDirectory": ".next"
 }
