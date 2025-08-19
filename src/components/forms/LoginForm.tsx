@@ -7,7 +7,6 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from "next/image";
-import { API_CONFIG } from "@/utils/config";
 
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 
@@ -29,12 +28,13 @@ const LoginForm = () => {
 
    const onSubmit = async (data: FormData) => {
       try {
-         const apiUrl = `${API_CONFIG.baseUrl}/auth/login`;
+         const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://hozn-topaz.vercel.app/api';
+         const apiUrl = `${baseUrl}/auth/login`;
          
          // Log the URL being used
          console.log('🔑 Attempting login to:', apiUrl);
          console.log('🌍 Current environment:', process.env.NODE_ENV);
-         console.log('📊 API_CONFIG:', API_CONFIG);
+         console.log('📊 NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
          console.log('📝 Login data:', { email: data.email, password: '[HIDDEN]' });
          
          const response = await fetch(apiUrl, { 

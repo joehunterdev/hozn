@@ -8,7 +8,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation"; 
-import { API_CONFIG } from "@/utils/config";
 
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 
@@ -54,12 +53,13 @@ const RegisterForm = () => {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      const apiUrl = `${API_CONFIG.baseUrl}/auth/signup`;
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://hozn-topaz.vercel.app/api';
+      const apiUrl = `${baseUrl}/auth/signup`;
       
       // Log the URL being used
       console.log('🚀 Attempting registration to:', apiUrl);
       console.log('🌍 Current environment:', process.env.NODE_ENV);
-      console.log('📊 API_CONFIG:', API_CONFIG);
+      console.log('📊 NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
       console.log('📝 Form data:', data);
       
       const response = await axios.post(apiUrl, data);

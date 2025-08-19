@@ -1,8 +1,7 @@
 import axios from "axios";
-import { API_CONFIG } from "./config";
 
 export const api = axios.create({
-  baseURL: `${API_CONFIG.baseUrl}/auth`,
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL || 'https://hozn-topaz.vercel.app/api'}/auth`,
   headers: {
     "Content-Type": "application/json",
   },

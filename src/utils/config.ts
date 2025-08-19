@@ -1,16 +1,8 @@
-// API Configuration
-export const API_CONFIG = {
-  baseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://hozn-topaz.vercel.app/api',
-  timeout: 10000, // 10 seconds
-  headers: {
-    'Content-Type': 'application/json',
-  }
-} as const;
-
 // Add logging to see what's happening
 console.log('🔍 Environment Debug Info:');
 console.log('NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
-console.log('API_CONFIG.baseUrl:', API_CONFIG.baseUrl);
+console.log('All NEXT_PUBLIC vars:', Object.keys(process.env).filter(key => key.startsWith('NEXT_PUBLIC')));
+console.log('Resolved baseUrl:', process.env.NEXT_PUBLIC_API_URL || 'https://hozn-topaz.vercel.app/api');
 console.log('window.location:', typeof window !== 'undefined' ? window.location.href : 'server-side');
 console.log('NODE_ENV:', process.env.NODE_ENV);
 
@@ -19,11 +11,12 @@ export const apiRequest = async (
   endpoint: string, 
   options: RequestInit = {}
 ): Promise<Response> => {
-  const url = `${API_CONFIG.baseUrl}${endpoint}`;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://hozn-topaz.vercel.app/api';
+  const url = `${baseUrl}${endpoint}`;
   
   const config: RequestInit = {
     headers: {
-      ...API_CONFIG.headers,
+      'Content-Type': 'application/json',
       ...options.headers,
     },
     ...options,
