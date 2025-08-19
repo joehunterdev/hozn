@@ -1,4 +1,15 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": ".next"
+  "outputDirectory": ".next",
+  "functions": {
+    "real-estate-backend/src/server.ts": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/real-estate-backend/src/server.ts"
+    }
+  ]
 }
