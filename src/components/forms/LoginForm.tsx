@@ -29,13 +29,22 @@ const LoginForm = () => {
 
    const onSubmit = async (data: FormData) => {
       try {
-         const response = await fetch(`${API_CONFIG.baseUrl}/auth/login`, { 
+         const apiUrl = `${API_CONFIG.baseUrl}/auth/login`;
+         
+         // Log the URL being used
+         console.log('🔑 Attempting login to:', apiUrl);
+         console.log('🌍 Current environment:', process.env.NODE_ENV);
+         console.log('📊 API_CONFIG:', API_CONFIG);
+         console.log('📝 Login data:', { email: data.email, password: '[HIDDEN]' });
+         
+         const response = await fetch(apiUrl, { 
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
          });
 
          const result = await response.json();
+         console.log('📨 Login response:', result);
 
          if (response.ok) {
             // Store the token if provided
@@ -49,6 +58,7 @@ const LoginForm = () => {
             toast.error(result.message || "Invalid email or password");
          }
       } catch (error) {
+         console.error('❌ Login error:', error);
          toast.error("An error occurred. Please try again.");
       }
    };

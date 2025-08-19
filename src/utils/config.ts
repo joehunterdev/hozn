@@ -7,6 +7,13 @@ export const API_CONFIG = {
   }
 } as const;
 
+// Add logging to see what's happening
+console.log('🔍 Environment Debug Info:');
+console.log('NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
+console.log('API_CONFIG.baseUrl:', API_CONFIG.baseUrl);
+console.log('window.location:', typeof window !== 'undefined' ? window.location.href : 'server-side');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
 // API Helper function
 export const apiRequest = async (
   endpoint: string, 

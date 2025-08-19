@@ -54,7 +54,15 @@ const RegisterForm = () => {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      const response = await axios.post(`${API_CONFIG.baseUrl}/auth/signup`, data);
+      const apiUrl = `${API_CONFIG.baseUrl}/auth/signup`;
+      
+      // Log the URL being used
+      console.log('🚀 Attempting registration to:', apiUrl);
+      console.log('🌍 Current environment:', process.env.NODE_ENV);
+      console.log('📊 API_CONFIG:', API_CONFIG);
+      console.log('📝 Form data:', data);
+      
+      const response = await axios.post(apiUrl, data);
 
       if (response.status === 201) {
         toast.success("Registration successful! Redirecting to login...", {
@@ -65,6 +73,7 @@ const RegisterForm = () => {
         setTimeout(() => router.push("/dashboard/dashboard-index"), 2000); 
       }
     } catch (error: any) {
+      console.error('❌ Registration error:', error);
       toast.error(error.response?.data?.error || "Error during registration", {
         position: "top-center",
       });
