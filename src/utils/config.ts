@@ -1,6 +1,6 @@
 // API Configuration
 export const API_CONFIG = {
-  baseUrl: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
+  baseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://hozn-topaz.vercel.app/api',
   timeout: 10000, // 10 seconds
   headers: {
     'Content-Type': 'application/json',
