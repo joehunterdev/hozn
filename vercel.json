@@ -3,7 +3,7 @@
   "outputDirectory": ".next",
   "functions": {
     "real-estate-backend/src/server.ts": {
-      "runtime": "nodejs18.x"
+      "runtime": "@vercel/node"
     }
   },
   "rewrites": [
